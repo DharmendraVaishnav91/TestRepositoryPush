@@ -1,0 +1,52 @@
+<style type="text/css">
+  .dateclass{
+  width:100%;
+  }
+
+  .dateclass.placeholderclass::before{
+  width:100%;
+  content:attr(placeholder);
+  }
+
+  .dateclass.placeholderclass:hover::before{
+  width:0%;
+  content:"";
+  }
+</style>
+<ion-view view-title="">
+    <ion-nav-title class="title-center" >
+      	Add placement step
+    </ion-nav-title>
+    <ion-nav-bar align-title="left" class="customheader bar-positive">
+        <ion-nav-buttons side="left">
+            <div>
+                <div  ng-hide="false" class="button button-icon button-clear  ion-ios-arrow-back" ng-click="goBack();"></div>
+            </div>
+        </ion-nav-buttons>
+      </ion-nav-bar>
+      <ion-content>
+      	<form name="forms.addStepForm">
+          <div class="list list-inset">
+            <label class="item item-input" ng-class="{'border-assertive' : forms.addStepForm.name.$invalid&&!forms.addStepForm.$pristine}">
+              <input type="text" name='name' placeholder="Name" ng-required="true" ng-model="localPlacementStep.name">
+            </label>
+            <label class="item item-input" style="margin-top:1px;">
+              <input type="date"   placeholder="Start date"  ng-model="localPlacementStep.starts_at" ng-click="$(this).removeClass('placeholderclass')">
+            </label>
+            <label class="item item-input" style="margin-top:1px;">
+              <input type="date"  placeholder="End date" ng-model="localPlacementStep.ends_at" ng-click="$(this).removeClass('placeholderclass')">
+            </label>
+            <label class="item item-input" style="margin-top:1px;">
+              <input type="text" placeholder="Remark" ng-model="localPlacementStep.remark">
+            </label>
+            
+            <button class="button button-block button-positive" type="submit" ng-click="createStep()" ng-if="comingFor=='create'">
+              Create
+            </button>            
+            <button class="button button-block button-positive" type="submit" ng-click="updateStep()" ng-if="comingFor=='update'">
+              Update
+            </button>
+          </div>
+        </form>
+      </ion-content>
+</ion-view>
